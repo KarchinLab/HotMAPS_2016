@@ -35,7 +35,7 @@ For consistency of processing protein chain descriptions found in the PDB file t
 
 ### Initial Setup
 
-First, download the Protein Data Bank (PDB) structures from [ftp://ftp.wwpdb.org/pub/pdb/](ftp://ftp.wwpdb.org/pub/pdb/) and the [theoretical protein structure models](ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/). Then update the config.txt to point toward the directories that you save the structure files at. A MySQL dump of the MuPIT database containing mutation counts in our study and associated tables that map genome coordinates to PDB structures is available [here](http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz). The MuPIT database has a fairly large file size, you may want to directly download and uploade to MYSQL.
+First, download the Protein Data Bank (PDB) structures from [ftp://ftp.wwpdb.org/pub/pdb/](ftp://ftp.wwpdb.org/pub/pdb/) and the theoretical protein structure models ([ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/](ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/)). Then update the config.txt to point toward the directories that you save the structure files at. A MySQL dump of the MuPIT database containing mutation counts in our study and associated tables that map genome coordinates to PDB structures is available [here](http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz). The MuPIT database has a fairly large file size, you may want to directly download and uploade to MYSQL.
 
 ```bash
 $ wget http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz
