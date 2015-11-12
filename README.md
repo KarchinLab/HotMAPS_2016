@@ -29,13 +29,13 @@ The exact version numbers may not be necessary but are what it was tested on.
 
 ### Java
 
-For consistency of processing protein chain descriptions found in the PDB file to that performed in MuPit, we use BioJava to annotate each chain and add that label as a column in the input file to our pipeline. Download the BioJava 3.1 [core](http://biojava.org/download/maven/org/biojava/biojava3-core/3.1.0/biojava3-core-3.1.0.jar) and [structure](http://biojava.org/download/maven/org/biojava/biojava3-structure/3.1.0/biojava3-structure-3.1.0.jar) jar files and place them in a directory called "lib".
+For consistency of processing protein chain descriptions found in the PDB file to that performed in MuPIT, we use BioJava to annotate each chain and add that label as a column in the input file to our pipeline. Download the BioJava 3.1 [core](http://biojava.org/download/maven/org/biojava/biojava3-core/3.1.0/biojava3-core-3.1.0.jar) and [structure](http://biojava.org/download/maven/org/biojava/biojava3-structure/3.1.0/biojava3-structure-3.1.0.jar) jar files and place them in a directory called "lib".
 
-## 3D Hotspot Detection Pipeline
+## HotMAPS Pipeline
 
 ### Initial Setup
 
-First, download the Protein Data Bank (PDB) structures from [ftp://ftp.wwpdb.org/pub/pdb/](ftp://ftp.wwpdb.org/pub/pdb/) and the theoretical protein structure models ([ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/](ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/)). Then update the config.txt to point toward the directories that you save the structure files at. A MySQL dump of the MuPIT database containing mutation counts in our study and associated tables that map genome coordinates to PDB structures is available [here](http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz). The MuPIT database has a fairly large file size, you may want to directly download and uploade to MYSQL.
+First, download the Protein Data Bank (PDB) structures from [ftp://ftp.wwpdb.org/pub/pdb/](ftp://ftp.wwpdb.org/pub/pdb/) and the theoretical protein structure models ([ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/](ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/)). Then update the config.txt to point toward the directories that you save the structure files at. A MySQL dump of the MuPIT database containing mutation counts in our study and associated tables that map genome coordinates to PDB structures is available [here](http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz). The MuPIT database has a fairly large file size, you may want to directly download and upload to MYSQL.
 
 ```bash
 $ wget http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz
@@ -43,12 +43,12 @@ $ gunzip mupit_modbase.sql.gz
 $ mysql [options] < mupit_modbase.sql
 ```
 
-This will create a database named `mupit_modbase`. Additionally, download the mutation annotations for the CRAVAT reference transcript [here](http://karchinlab.org/data/HotMAPS/mupit_annotations.tar.gz), and then place in a sub-directory called "data".
+This will create a database named `mupit_modbase`, where `[options]` is the necessary MySQL parameters to login. Additionally, download the mutation annotations for the CRAVAT reference transcript [here](http://karchinlab.org/data/HotMAPS/mupit_annotations.tar.gz), and then place in a sub-directory called "data".
 
 ### Running 3D HotMAPS
 
 First, the input files need to be generated. The initial input information
-is retrieved from the Mupit MySQL database. To prepare the input files
+is retrieved from the MuPIT MySQL database. To prepare the input files
 simply invoke the following make command.
 
 ```bash
@@ -90,8 +90,7 @@ $ make multipleTestCorrect OUTPUT_DIR=myoutput MUPIT_ANNOTATION_DIR=annotation_d
 
 `myqvalue` is the q-value for the False Discovery Rate (FDR) correction (.01 by default). The next step is group significant residues
 into regions. If you are interested in regions on the actual PDB protein structure,
-then you will utilize the `find_hotspot_regions_struct.py` script use the following
-commmand:
+script use the following command:
 
 ```bash
 $ make findHotregionStruct OUTPUT_DIR=myoutput_dir Q_VALUE=myqvalue MUPIT_ANNOTATION_DIR=annotation_dir
@@ -105,7 +104,7 @@ using the reference transcript selected by CRAVAT for each mutation.
 $ make findHotregionGene OUTPUT_DIR=myoutput_dir Q_VALUE=myqvalue MUPIT_ANNOTATION_DIR=annotation_dir
 ```
 
-### 1D Hotspot Detection Pipeline
+### 1D Version
 
 This is very similar to the 3D detection one but instead of the 3D versions
 of the make commands, the 1D versions are used instead. If you have 
