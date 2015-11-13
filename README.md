@@ -11,6 +11,8 @@ found in the scripts directory or top-level scripts.
 
 ## Install
 
+HotMAPS is intended to be ran on linux systems.
+
 ### Python
 
 The python code depends on the following python libraries (listed in requirements.txt):
