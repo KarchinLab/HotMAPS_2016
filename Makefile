@@ -110,7 +110,7 @@ runNormalHotspot:
 		-n ${NUM_SIM} \
 		-r ${RADIUS} \
 		-o ${OUTPUT_DIR}/output_merged.txt \
-		-e ${OUTPUT_DIR}/error/error_pdb_${signif_lvl}_${PDB_INFO}.txt \
+		-e ${OUTPUT_DIR}/error/error_pdb_${PDB_INFO}.txt \
 		--log=stdout
 
 # merge all files about hotspots together
@@ -182,7 +182,7 @@ runNormalHotspot1D:
 		-n ${NUM_SIM} \
 		-r ${RADIUS} \
 		-o ${OUTPUT_DIR}/output_merged_1d.txt \
-		-e ${OUTPUT_DIR}/error/error_pdb_${signif_lvl}_${PDB_INFO}_1d.txt \
+		-e ${OUTPUT_DIR}/error/error_pdb_${PDB_INFO}_1d.txt \
 		--log=stdout
 
 # merge all files about hotspots together

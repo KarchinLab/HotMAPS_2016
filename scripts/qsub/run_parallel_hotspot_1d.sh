@@ -17,8 +17,8 @@ echo "python hotspot_1d.py --log-level=INFO \
     -t EVERY \
     -n $num_sim \
     -r $radius \
-    -o $out_dir/data/hotspot_1d_$radius/full_output/output_${signif_lvl}_$((SGE_TASK_ID-1)).txt \
-    -e $out_dir/error_1d_$radius/error_pdb_${signif_lvl}_$((SGE_TASK_ID-1)).txt \
+    -o $out_dir/data/hotspot_1d_$radius/full_output/output_$((SGE_TASK_ID-1)).txt \
+    -e $out_dir/error_1d_$radius/error_pdb_$((SGE_TASK_ID-1)).txt \
     --log=stdout "
 python hotspot_1d.py --log-level=INFO \
     -m $split_dir/mut_info_split_$((SGE_TASK_ID-1)).txt \
@@ -26,7 +26,7 @@ python hotspot_1d.py --log-level=INFO \
     -t EVERY \
     -n $num_sim \
     -r $radius \
-    -o $out_dir/data/hotspot_1d_$radius/full_output/output_${signif_lvl}_$((SGE_TASK_ID-1)).txt \
-    -e $out_dir/error_1d_$radius/error_pdb_${signif_lvl}_$((SGE_TASK_ID-1)).txt \
+    -o $out_dir/data/hotspot_1d_$radius/full_output/output_$((SGE_TASK_ID-1)).txt \
+    -e $out_dir/error_1d_$radius/error_pdb_$((SGE_TASK_ID-1)).txt \
     --log=stdout
 date
