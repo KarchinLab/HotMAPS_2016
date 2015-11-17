@@ -11,7 +11,7 @@ found in the scripts directory or top-level scripts.
 
 ## Install
 
-HotMAPS is intended to be ran on linux systems.
+HotMAPS is intended to be ran on **linux** operating systems.
 
 ### Python
 
@@ -73,16 +73,16 @@ $ make OUTPUT_DIR=myoutput_dir runNormalHotspot
 
 `myoutput_dir` is the output directory (Default: output/all_pdb_run).
 
-To merge the output from the parallel runs use the following make command:
-Note if you ran the normal version instead of parallel, you need not run this step
-the merged file will already be produced
+Note if you ran the normal version instead of parallel, you need not run this next step
+as the merged file will already be produced. To merge the output from the parallel 
+runs use the following make command:
 
 ```bash
 $ make OUTPUT_DIR=myoutput mergeHotspotFiles
 ```
 
 Next, the p-values need to be adjusted for multiple hypotheses testing. 
-This needs the mutation annotation files noted in the `Initital Setup`
+This needs the CRAVAT reference transcript files noted in the `Initital Setup`
 section that was saved in the "data" sub-directory (parameter `MUPIT_ANNOTATION_DIR` in the make command).
 
 ```bash
