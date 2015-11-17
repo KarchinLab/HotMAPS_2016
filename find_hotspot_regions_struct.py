@@ -95,11 +95,18 @@ def read_residue_info(path):
     res_ix = header.index("Mutation Residues")
     pval_ix = header.index("Hotspot P-value")
     data.append([header[struct_ix], header[ttype_ix], header[model_ix], header[chain_ix], header[res_ix], header[pval_ix]])
-    non_float_pvals = 0
 
+    non_float_pvals = 0
+    missing_line_info = 0
     for line in f:
         line = line.strip()
         line = line.split('\t')
+
+        # skip empty lines with no mutation info
+        if len(line) <= 2:
+            missing_line_info += 1
+            continue
+
         models = line[model_ix].split(',')
         chains = line[chain_ix].split(',')
         residues = line[res_ix].split(',')
@@ -113,7 +120,7 @@ def read_residue_info(path):
                 non_float_pvals += 1
 
     logger.info("Number of non-float pvals = " + str(non_float_pvals))
-
+    logger.info("Number of lines with missing info = " + str(missing_line_info))
 
     return data
 
