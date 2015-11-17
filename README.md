@@ -37,28 +37,27 @@ For consistency of processing protein chain descriptions found in the PDB file t
 
 ### Initial Setup
 
-First, download the Protein Data Bank (PDB) structures from [ftp://ftp.wwpdb.org/pub/pdb/](ftp://ftp.wwpdb.org/pub/pdb/) and the theoretical protein structure models ([ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/](ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/)). Then update the config.txt to point toward the directories that you save the structure files at. A MySQL dump of the MuPIT database containing mutation counts in our study and associated tables that map genome coordinates to PDB structures is available [here](http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz). The MuPIT database has a fairly large file size, you may want to directly download and upload to MYSQL.
+First, download the Protein Data Bank (PDB) structures from [ftp://ftp.wwpdb.org/pub/pdb/](ftp://ftp.wwpdb.org/pub/pdb/) and the theoretical protein structure models ([ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/](ftp://salilab.org/databases/modbase/projects/genomes/H_sapiens/2013/)). Then update the config.txt to point toward the directories that you save the structure files at.  Additionally, download the [mutations file](http://karchinlab.org/data/HotMAPS/mutations.txt.gz), [protein structure annotation file](http://karchinlab.org/data/HotMAPS/pdb_info.txt.gz), and  annotations for the CRAVAT reference transcript available [here](http://karchinlab.org/data/HotMAPS/mupit_annotations.tar.gz). Place all three files in a sub-directory called "data". Assuming you are already in the HotMAPS directory:
 
 ```bash
-$ wget http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz
-$ gunzip mupit_modbase.sql.gz
-$ mysql [options] < mupit_modbase.sql
+$ mkdir -p data
+$ cd data
+$ wget http://karchinlab.org/data/HotMAPS/mutations.txt.gz
+$ gunzip mutations.txt.gz
+$ wget http://karchinlab.org/data/HotMAPS/pdb_info.txt.gz
+$ gunzip pdb_info.txt.gz
+$ wget http://karchinlab.org/data/HotMAPS/mupit_annotations.tar.gz
+$ tar xvzf mupit_annotations.tar.gz
+$ cd ..
 ```
 
-This will create a database named `mupit_modbase`, where `[options]` is the necessary MySQL parameters to login. Additionally, download the mutation annotations for the CRAVAT reference transcript [here](http://karchinlab.org/data/HotMAPS/mupit_annotations.tar.gz), and then place in a sub-directory called "data".
+Assuming you have changed the `config.txt` file to point towards where you downloaded the protein structure files, an additional step is needed to annotate those protein structures.
+
+```bash
+$ make annotateStructures
+```
 
 ### Running 3D HotMAPS
-
-First, the input files need to be generated. The initial input information
-is retrieved from the MuPIT MySQL database. To prepare the input files
-simply invoke the following make command.
-
-```bash
-$ make MYSQL_USER=myuser MYSQL_DB=mydb prepareHotspotInput
-```
-
-Where `myuser` is your MySQL user name and `mydb` is the database name
-for Mupit (Default: mupit_modbase).
 
 To run the code in parallel using Sun Grid Engine (SGE) execute the following make command:
 
@@ -147,3 +146,25 @@ regions.
 ```bash
 $ make findHotregionGene1D OUTPUT_DIR=myoutput_dir Q_VALUE=myqvalue MUPIT_ANNOTATION_DIR=annotation_dir
 ```
+
+### Advanced (optional)
+
+The input data for HotMAPS can also be prepared by directly using the MuPIT MySQL database. A MySQL dump of the MuPIT database containing mutation counts in our study and associated tables that map genome coordinates to PDB structures is available [here](http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz). The MuPIT database has a fairly large file size, you may want to directly download and upload to MYSQL.
+
+```bash
+$ wget http://karchinlab.org/data/HotMAPS/mupit_modbase.sql.gz
+$ gunzip mupit_modbase.sql.gz
+$ mysql [options] < mupit_modbase.sql
+```
+
+This will create a database named `mupit_modbase`, where `[options]` is the necessary MySQL parameters to login.
+
+Next, the input files need to be generated before starting the `Running 3D HotMAPS` section. The initial input information
+is retrieved from the MuPIT MySQL database, in contrast to downloading already made files (done in the `Initial Setup` section). To prepare the input files simply invoke the following make command.
+
+```bash
+$ make MYSQL_USER=myuser MYSQL_DB=mydb prepareHotspotInput
+```
+
+Where `myuser` is your MySQL user name and `mydb` is the database name
+for Mupit (Default: mupit_modbase).
