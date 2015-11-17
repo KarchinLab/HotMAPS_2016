@@ -1,8 +1,6 @@
 import argparse
 import csv
 import re
-import IPython
-
 
 # import modules needed for logging
 import logging

@@ -6,7 +6,6 @@ import scripts.get_hotspot_residues as get_hotspot_residues
 import argparse
 import csv
 import itertools as it
-import IPython
 import sys
 
 # get logger

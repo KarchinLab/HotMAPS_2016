@@ -2,7 +2,6 @@ import argparse
 import csv
 import re
 import time
-import IPython
 
 # import modules needed for logging
 import logging

@@ -5,7 +5,6 @@ import src.graph as graph
 import argparse
 import csv
 import itertools as it
-import IPython
 
 # get logger
 import logging

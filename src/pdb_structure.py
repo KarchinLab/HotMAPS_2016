@@ -4,7 +4,6 @@ import utils
 import Bio.PDB
 import string
 import os
-#import IPython
 
 def find_neighbors(cog, max_dist=10):
     """
@@ -525,7 +524,6 @@ def get_buried_residues(structure, cutoff, tmp_dir, dssp_path):
             orig_model_chain = list(id_map[full_id[1:3]])
         except:
             print full_id, id_map
-            #IPython.embed()
             raise
         # fix missing letter for homology models
         if orig_model_chain[1] == ' ':
