@@ -163,8 +163,8 @@ Next, the input files need to be generated before starting the `Running 3D HotMA
 is retrieved from the MuPIT MySQL database, in contrast to downloading already made files (done in the `Initial Setup` section). To prepare the input files simply invoke the following make command.
 
 ```bash
-$ make MYSQL_USER=myuser MYSQL_DB=mydb prepareHotspotInput
+$ make MYSQL_USER=myuser MYSQL_HOST=myhost MYSQL_DB=mydb prepareHotspotInput
 ```
 
-Where `myuser` is your MySQL user name and `mydb` is the database name
+Where `myuser` is your MySQL user name, `myhost` is the host name for MySQL, and `mydb` is the database name
 for Mupit (Default: mupit_modbase).
