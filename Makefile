@@ -82,6 +82,7 @@ splitInputFiles:
 
 # Run all commands for preparing input for hot spot detection code
 prepareHotspotInput: getPDBInfo getMutations getPDBPath getPDBDescription splitInputFiles
+annotateStructures: getPDBPath getPDBDescription splitInputFiles
 
 #####################################
 # Run hotspot code
