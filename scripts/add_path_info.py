@@ -87,7 +87,7 @@ def main(opts):
                 pdb_path = os.path.abspath(os.path.join(refseq_dir, '{0}.pdb'.format(struct_id)))
             else:
                 # try to get non-biological assembly pdb file path
-                putative_path = os.path.join(pdb_dir, 'pdb{0}.ent'.format(struct_id))
+                putative_path = os.path.join(pdb_dir, 'pdb{0}.ent.gz'.format(struct_id))
                 if os.path.exists(putative_path):
                     non_biounit_path = putative_path
                 else:

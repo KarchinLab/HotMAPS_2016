@@ -4,4 +4,4 @@ pdb_dir=/databases/pdb
 refseq_homology: %(modbase_dir)s/ModBase_H_sapiens_2013_refseq/models/model/
 ensembl_homology: %(modbase_dir)s/H_sapiens_2013/models/
 biological_assembly: %(pdb_dir)s/pdb-mirror/data/biounit/coordinates/all/
-non_biological_assembly: %(pdb_dir)s/uncompressed/
+non_biological_assembly: %(pdb_dir)s/pdb-mirror/data/structures/all/pdb
