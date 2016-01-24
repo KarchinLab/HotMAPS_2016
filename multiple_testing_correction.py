@@ -161,6 +161,7 @@ def get_group_pvals(mupit_groups, gene_ind, transcript_ind,
     prev_group = (mupit_groups[0][gene_ind],
                   mupit_groups[0][transcript_ind],
                   mupit_groups[0][residue_ind])
+    prev_line = mupit_groups[0]
 
     # go through all mupit data
     for j, line in enumerate(mupit_groups):
@@ -177,18 +178,18 @@ def get_group_pvals(mupit_groups, gene_ind, transcript_ind,
             # pvals
             if not grouped_pvals:
                 EMPTY_PVALS += 1
-                print "no pval"
-
+                #print "no pval"
             else:
                 # if not, get the min pval and move onto the next
                 min_pvals.append([prev_group[0], ttype, prev_group[1],
-                                  prev_group[2], line[aa_ind], line[chrom_ind],
-                                  line[genomic_pos_ind], func(grouped_pvals)])
+                                  prev_group[2], prev_line[aa_ind], prev_line[chrom_ind],
+                                  prev_line[genomic_pos_ind], func(grouped_pvals)])
                 grouped_pvals = []
 
         # update prev_group
         prev_group = curr_group
-
+        # update prev_line
+        prev_line = line
 
         # get the pvals corresponding to the pdb, chain, residue
         # combination, stored in hspot_pvals dict
