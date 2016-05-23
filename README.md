@@ -2,7 +2,7 @@
 
 ## About
 
-Hotspot Missense mutation Areas in Protein Structures (HotMAPS) detects mutation hotspot regions in 3D protein structures. Hotspot regions are identified at an individual residue basis, and can be of varying sizes (e.g., 1, 5, or other number of residues). Protein structures often have multiple protein chains, which may arise from the same gene and thus be mutated at the same residue position. Identical chains are accounted for in the model to prevent errors induced by assuming chains are independent. For example, an annotated mutation in a gene forming a homodimer will always contain the same mutation in both chains. PDB biological assemblies are used when available to best reveal biologically meaningful 3D hotspots.
+Hotspot Missense mutation Areas in Protein Structures (HotMAPS) detects somatic mutation hotspot regions in 3D protein structures. Missense mutations in cancer can often be difficult to interpret there effect, but missense mutations occurring at hotspots tend to implicate a driving role in cancer. Hotspot regions are identified at an individual residue basis, and can be of varying sizes (e.g., 1, 5, or other number of residues). Protein structures often have multiple protein chains, which may arise from the same gene and thus be mutated at the same residue position. Identical chains are accounted for in the model to prevent errors induced by assuming chains are independent. For example, an annotated mutation in a gene forming a homodimer will always contain the same mutation in both chains. PDB biological assemblies are used when available to best reveal biologically meaningful 3D hotspots.
 
 ## Links
 
