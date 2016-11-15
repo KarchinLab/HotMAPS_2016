@@ -15,9 +15,6 @@ Q_VALUE=.01
 NUM_SIM=10000
 # sphere radius for residue neighbors
 RADIUS=10.0
-# window size to look in sequence
-# for 1D algorithm
-FLANK_1D=3
 
 # annotation input for pdb files
 PDB_INFO=data/fully_described_pdb_info.txt
