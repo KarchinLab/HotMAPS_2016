@@ -36,8 +36,6 @@ GROUP_FUNC=min
 ###################################
 # Paths to external tools/libraries
 ###################################
-# JAR files needed for BioJava
-BIOJAVA=lib/biojava3-core-3.1.0.jar:lib/biojava3-structure-3.1.0.jar
 
 ##################################################
 # Directories containing mutations and their 
@@ -70,8 +68,7 @@ getPDBPath:
 
 # get the chain desciption for the PDB files
 getPDBDescription:
-	javac -classpath ${BIOJAVA} scripts/ChainDescription.java
-	java -classpath ./scripts:${BIOJAVA} ChainDescription data/pdb_info.path.txt ${PDB_INFO}
+	python scripts/chain_description.py -i data/pdb_info.path.txt -o ${PDB_INFO}
 
 # split input files for parallelization
 splitInputFiles:
