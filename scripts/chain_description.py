@@ -3,6 +3,7 @@ from Bio.PDB.parse_pdb_header import parse_pdb_header
 import argparse
 import csv
 import re
+import gzip
 
 def parse_arguments():
     info = 'Add chain description to PDB information file'
@@ -56,7 +57,13 @@ def main(opts):
                 if line[header2ix['PDBId']] != pdb_id:
                     # read in pdb
                     pdb_id = line[header2ix['PDBId']]
-                    pdb_header = parse_pdb_header(non_bio_pdb_path)
+                    if non_bio_pdb_path.endswith('.gz'):
+                        # handle compressed case
+                        with gzip.open(non_bio_pdb_path, 'rb') as gzhandle:
+                            pdb_header = parse_pdb_header(gzhandle)
+                    else:
+                        # normal .ent file
+                        pdb_header = parse_pdb_header(non_bio_pdb_path)
 
                     # process pdb header from COMPND lines
                     chain2desc = {}
