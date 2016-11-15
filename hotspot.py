@@ -37,9 +37,9 @@ def parse_arguments():
                         type=float,
                         help='Sphere radius in angstroms (Default: 10.0)')
     parser.add_argument('-s', '--seed',
-                        default=None,
+                        default=101,
                         type=int,
-                        help='Random number generator seed (Default: automatic)')
+                        help='Random number generator seed (Default: 101)')
     parser.add_argument('-sc', '--stop-criterion',
                         default=200,
                         type=int,
