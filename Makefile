@@ -44,10 +44,6 @@ GROUP_FUNC=min
 # Directory for merged annotation info
 MUPIT_ANNOTATION_DIR=data/mupit/mupit_annotations_10_27_2015/
 
-# directory in which txts containing comparisons
-# between 1d and 3d analysis are dumped
-COMPARISON_DIR = ${OUTPUT_DIR}/comparison_1d_3d/
-
 ##################################
 # Prepare input files for hot spot
 # detetection
