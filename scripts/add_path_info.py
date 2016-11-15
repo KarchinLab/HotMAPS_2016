@@ -119,6 +119,7 @@ def main(opts):
 
     print('There are {0} missing pdb files'.format(len(set(missing_files))))
     print('There are {0} missing non-bioassembly pdb file'.format(len(set(missing_non_bio_files))))
+    print('NOTE: Several dozen missing PDBs are expected because the PDB database is constantly changing')
 
 
 
