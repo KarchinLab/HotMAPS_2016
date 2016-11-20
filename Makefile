@@ -5,6 +5,7 @@
 MYSQL_HOST=karchin-db01.icm.jhu.edu 
 MYSQL_USER=collin
 MYSQL_DB=mupit_modbase
+MYSQL_PASSWD=YourPASSWORD
 
 # directory containing output files
 OUTPUT_DIR=output/all_pdb_run/
@@ -30,16 +31,76 @@ TEMP_DIR=tmp/
 
 GROUP_FUNC=min
 
-###################################
-# Paths to external tools/libraries
-###################################
-
 ##################################################
 # Directories containing mutations and their 
 # annotations
 ##################################################
+MUT_DIR=data/mutations
+MUT_REGEX='^TCGA.+\.maf' # regex to recognize maf files
 # Directory for merged annotation info
 MUPIT_ANNOTATION_DIR=data/mupit/mupit_annotations_10_27_2015/
+
+###################################
+# Prepare mutations from MAF file
+###################################
+# Maps mutations to structure
+mapMafToStructure:
+	mkdir -p ${MUT_DIR}
+	python scripts/mupit/map_maf_to_structure.py \
+		--data-dir ${MUT_DIR} \
+		--match-regex ${MUT_REGEX} \
+		--host ${MYSQL_HOST} \
+		--db ${MYSQL_DB} \
+		--mysql-user ${MYSQL_USER} \
+		--mysql-passwd ${MYSQL_PASSWD} \
+		--output-dir ${MUT_DIR}
+
+# prepare file relating protein structure to genomic mapping
+prepMupitAnnotationMaf:
+	mkdir -p ${MUPIT_ANNOTATION_DIR}
+	for ttype_file in `ls ${MUT_DIR}/ | egrep ${MUT_REGEX}` ; do \
+		echo $$ttype_file ; \
+		ttype=`basename $$ttype_file | awk -F"." '{print $$2}'` ; \
+		python scripts/maf/convert_maf_to_mupit.py \
+			--maf ${MUT_DIR}/$$ttype_file \
+			-mh ${MYSQL_HOST} \
+			-mdb ${MYSQL_DB} \
+			--mysql-user ${MYSQL_USER} \
+			--mysql-passwd ${MYSQL_PASSWD} \
+			--tumor-type $$ttype \
+			--no-stratify \
+			-i data/ \
+			--output ${MUPIT_ANNOTATION_DIR}/mupit_mutations_$$ttype ; \
+	done
+
+# filter mappings from mupit and create mutations table
+prepareMutationsTableMaf:
+	mkdir -p ${MUT_DIR}
+	python scripts/mupit/filter_hypermutated.py \
+		--raw-dir ${MUT_DIR} \
+		--match-regex ${MUT_REGEX} \
+		--sample-col Tumor_Sample_Barcode \
+		--data-dir ${MUT_DIR}
+	python scripts/mupit/count_mutations.py \
+		--data-dir ${MUT_DIR}
+	python scripts/mupit/format_mutations_table.py \
+		--data-dir ${MUT_DIR}
+	python scripts/mupit/merge_mutations_table_data.py ${MUT_DIR}
+
+## Load changes to MUPIT mysql
+# load the mutations into the Mupit mysql db
+# this will drop the table and reload a completely new
+# set of mutations
+loadMupitMutations:
+	python scripts/mupit/load_mutations_table.py \
+		-m ${MUT_DIR}/mysql.mutations.tcga.txt \
+		--host ${MYSQL_HOST} \
+		--mysql-user ${MYSQL_USER} \
+		--mysql-passwd ${MYSQL_PASSWD} \
+		--db ${MYSQL_DB}
+
+# run all the steps
+prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf loadMupitMutations
 
 ##################################
 # Prepare input files for hot spot
