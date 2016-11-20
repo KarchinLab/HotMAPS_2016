@@ -85,7 +85,7 @@ def main(opts):
                     # check if mutation is a duplicate
                     variant_id = sample + '_' + chrom + '_' + start + '_' + end + '_' + ref_base + '_' + alt_base
                     if distinct_variants.has_key(variant_id):
-                        print(filename + ':' + variant_id + ': duplicate')
+                        #print(filename + ':' + variant_id + ': duplicate')
                         continue
                     else:
                         distinct_variants[variant_id] = True
