@@ -2,7 +2,7 @@
 # Parameters for running hotspot pipeline
 #########################################
 # mysql information
-MYSQL_HOST=karchin-db01.icm.jhu.edu 
+MYSQL_HOST=karchin-db01
 MYSQL_USER=collin
 MYSQL_DB=mupit_modbase
 MYSQL_PASSWD=YourPASSWORD
@@ -35,8 +35,9 @@ GROUP_FUNC=min
 # Directories containing mutations and their 
 # annotations
 ##################################################
+HYPERMUT=500
 MUT_DIR=data/mutations
-MUT_REGEX='^TCGA.+\.maf' # regex to recognize maf files
+MUT_REGEX='^tcga.+\.maf' # regex to recognize maf files
 # Directory for merged annotation info
 MUPIT_ANNOTATION_DIR=data/mupit/mupit_annotations_10_27_2015/
 
@@ -79,6 +80,7 @@ prepareMutationsTableMaf:
 	python scripts/mupit/filter_hypermutated.py \
 		--raw-dir ${MUT_DIR} \
 		--match-regex ${MUT_REGEX} \
+		--mut-threshold ${HYPERMUT} \
 		--sample-col Tumor_Sample_Barcode \
 		--data-dir ${MUT_DIR}
 	python scripts/mupit/count_mutations.py \
@@ -100,7 +102,7 @@ loadMupitMutations:
 		--db ${MYSQL_DB}
 
 # run all the steps
-prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf loadMupitMutations
+prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf 
 
 ##################################
 # Prepare input files for hot spot
