@@ -39,7 +39,7 @@ def main(opts):
     # make mysql connection
     db = MySQLdb.connect(host=opts['host'],
                          user=opts['mysql_user'],
-                         passwd=opts['mysql_password'],
+                         passwd=opts['mysql_passwd'],
                          db=opts['db'])
     cursor = db.cursor()
 

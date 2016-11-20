@@ -134,7 +134,7 @@ def main(opts):
     # get mysql connection
     db = MySQLdb.connect(host=opts['mysql_host'],
                          user=opts['mysql_user'],
-                         passwd=opts['mysql_password'],
+                         passwd=opts['mysql_passwd'],
                          db=opts['mysql_db'])
     cursor = db.cursor()
 
