@@ -82,6 +82,10 @@ def main(opts):
                     gene, chrom, start, end = line[gene_ix], line[chrom_ix], line[start_ix], line[end_ix]
                     ref_base, alt_base, sample  = line[ref_ix], line[alt_ix], line[samp_ix]
 
+                    # shorten the sample ID if it is a TCGA barcode
+                    if sample.startswith('TCGA'):
+                        sample = sample[:12]
+
                     # check if mutation is a duplicate
                     variant_id = sample + '_' + chrom + '_' + start + '_' + end + '_' + ref_base + '_' + alt_base
                     if distinct_variants.has_key(variant_id):

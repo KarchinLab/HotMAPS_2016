@@ -46,6 +46,14 @@ def parse_arguments():
     return vars(args)
 
 
+def fix_samp_id(mystring):
+    """Remove all of the extra ID info from TCGA barcodes."""
+    if mystring.startswith('TCGA'):
+        return mystring[:12]
+    else:
+        return mystring
+
+
 def read_maf(path, tumor_type):
     """Reads in MAF file with several processing steps to be compatible
     with Xena.
@@ -68,7 +76,8 @@ def read_maf(path, tumor_type):
     df = pd.read_csv(path, sep='\t', skiprows=skip_rows)
 
     # drop duplicate mutations
-    df['Tumor_Sample_Barcode_short'] = df['Tumor_Sample_Barcode'].str[:12]
+    #df['Tumor_Sample_Barcode_short'] = df['Tumor_Sample_Barcode'].str[:12]
+    df['Tumor_Sample_Barcode_short'] = df['Tumor_Sample_Barcode'].apply(fix_samp_id)
     dup_cols = ['Tumor_Sample_Barcode_short', 'Hugo_Symbol', 'Chromosome',
                 'Start_Position', 'End_Position', 'Reference_Allele',
                 'Tumor_Seq_Allele2']
