@@ -12,6 +12,7 @@ Hotspot Missense mutation Areas in Protein Structures (HotMAPS) detects somatic 
 
 ## Releases
 
+* HotMAPS-1.1.0 Map mutations to protein structure and several other changes
 * HotMAPS-1.0.0 Initial release
 
 ## Citation
