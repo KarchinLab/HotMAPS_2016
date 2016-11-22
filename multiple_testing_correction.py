@@ -291,8 +291,7 @@ def main(opts):
     with open(signif_lvl_file, 'wb') as out_file:
         mywriter = csv.writer(out_file, delimiter='\t', lineterminator='\n')
         mywriter.writerows(signif_lvl_output)
-
-    print("MISSING COUNTS = " + str(MISSING_COUNT))
+    #print("MISSING COUNTS = " + str(MISSING_COUNT))
 
 
 if __name__ == "__main__":
