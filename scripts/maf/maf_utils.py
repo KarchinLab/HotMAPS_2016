@@ -81,7 +81,8 @@ def detect_hypermutators(file_path,
                 tmp_data = [t for t in data if t[strat_ix]==grp]
                 samp_list = [t[samp_ix] for t in tmp_data]
                 if not samp_list:
-                    IPython.embed()
+                    #IPython.embed()
+                    pass
                 mut_cts, mut_cutoff = calculate_cutoff(samp_list, mut_threshold)
                 grp2cutoff[grp] = mut_cutoff
 
