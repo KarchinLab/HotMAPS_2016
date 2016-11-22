@@ -37,9 +37,9 @@ GROUP_FUNC=min
 ##################################################
 HYPERMUT=500
 MUT_DIR=data/mutations
-MUT_REGEX='^tcga.+\.maf' # regex to recognize maf files
+MUT_REGEX='^input.+\.maf' # regex to recognize maf files
 # Directory for merged annotation info
-MUPIT_ANNOTATION_DIR=data/mupit/mupit_annotations_10_27_2015/
+MUPIT_ANNOTATION_DIR=data/annotation/mupit_annotations/
 
 ###################################
 # Prepare mutations from MAF file
@@ -70,6 +70,7 @@ prepMupitAnnotationMaf:
 			--mysql-passwd ${MYSQL_PASSWD} \
 			--tumor-type $$ttype \
 			--no-stratify \
+			-mt ${HYPERMUT} \
 			-i data/ \
 			--output ${MUPIT_ANNOTATION_DIR}/mupit_mutations_$$ttype ; \
 	done
@@ -102,7 +103,7 @@ loadMupitMutations:
 		--db ${MYSQL_DB}
 
 # run all the steps
-prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf 
+prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf loadMupitMutations
 
 ##################################
 # Prepare input files for hot spot
