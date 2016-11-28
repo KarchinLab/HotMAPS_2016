@@ -8,10 +8,14 @@ Hotspot Missense mutation Areas in Protein Structures (HotMAPS) detects somatic 
 
 * [Documentation Wiki](http://github.com/KarchinLab/HotMAPS/wiki/Home)
 * [Installation](http://github.com/KarchinLab/HotMAPS/wiki/Installation)
-* [Tutorial](http://github.com/KarchinLab/HotMAPS/wiki/Tutorial)
+* <a href="http://github.com/KarchinLab/HotMAPS/wiki/Quick-start">Quick start example</a>
+* <a href="http://github.com/KarchinLab/HotMAPS/wiki/Tutorial-(Exome-scale)">Tutorial (Exome scale)</a>
+* <a href="http://github.com/KarchinLab/HotMAPS/wiki/MySQL-database">Loading MySQL database</a>
+* <a href="http://github.com/KarchinLab/HotMAPS/wiki/Tutorial-(Mapping-mutations)">Tutorial (Mapping mutations to protein structure)</a>
 
 ## Releases
 
+* HotMAPS-1.1.1 Bug fixes for non-exome scale analysis
 * HotMAPS-1.1.0 Map mutations to protein structure and several other changes
 * HotMAPS-1.0.0 Initial release
 
