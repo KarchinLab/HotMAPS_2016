@@ -89,7 +89,7 @@ def main(opts):
                 # try to get non-biological assembly pdb file path
                 putative_path = os.path.join(pdb_dir, 'pdb{0}.ent.gz'.format(struct_id))
                 # the second path may occur if user downloads PDB from RCSB
-                putative_pat2 = os.path.join(pdb_dir, '{0}.pdb.gz'.format(struct_id))
+                putative_path2 = os.path.join(pdb_dir, '{0}.pdb.gz'.format(struct_id))
                 if os.path.exists(putative_path):
                     non_biounit_path = putative_path
                 elif os.path.exists(putative_path2):
