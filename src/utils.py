@@ -32,7 +32,7 @@ mod_base = ["TargetBeg", "TargetEnd", "SequenceIdentity", "EValue",
             "tsvmodNo35", "tsvmodRMSD"]
 ModBase = namedtuple('ModBase', mod_base)
 
-def start_logging(log_file='', log_level='INFO'):
+def start_logging(log_file='', log_level='INFO', verbose=False):
     """Start logging information into the log directory.
 
     If os.devnull is specified as the log_file then the log file will
@@ -49,7 +49,12 @@ def start_logging(log_file='', log_level='INFO'):
 
     # logger options
     lvl = logging.DEBUG if log_level.upper() == 'DEBUG' else logging.INFO
-    myformat = '%(asctime)s - %(name)s - %(levelname)s \n>>>  %(message)s'
+    #myformat = '%(asctime)s - %(name)s - %(levelname)s \n>>>  %(message)s'
+    # define logging format
+    if verbose:
+        myformat = '%(asctime)s - %(name)s - %(levelname)s \n>>>  %(message)s'
+    else:
+        myformat = '%(message)s'
 
     # create logger
     if not log_file == 'stdout':
