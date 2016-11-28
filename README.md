@@ -33,7 +33,7 @@ Releases can be found on github at
 
 ## Platform
 
-HotMAPS works on **linux** operating systems. You will need both python and java installed. For further installation details see the installation page.
+HotMAPS works on **linux** operating systems. You will need python installed. For further installation details see the installation page.
 
 ## Support
 
