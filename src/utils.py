@@ -184,7 +184,7 @@ def read_structure(pdb_path, structure_id, quiet=True):
 
     # skip if there is no pdb for it
     if not pdb_path:
-        logger.info('Skipping pdb {0}'.format(structure_id))
+        logger.debug('Skipping pdb {0}'.format(structure_id))
         return None
 
     # read in pdb file
