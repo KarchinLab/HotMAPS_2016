@@ -254,7 +254,15 @@ def main(opts):
     for m_file in os.listdir(mupit_dir):
         # print the tumor type we're on
         ttype = m_file.split('_')[-1]
-        print ttype
+        # skip cancer type if no mutations/hotspots.
+        # usually only happens if they use only a couple structures
+        # and not the full PDB
+        if ttype not in stratified_hotspot_output:
+            print('skipping ' + ttype)
+            continue
+        else:
+            print(ttype)
+
 
         # read in the file
         tmp = read_mupit_file(os.path.join(mupit_dir, m_file))
