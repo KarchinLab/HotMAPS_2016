@@ -105,7 +105,9 @@ def read_maf(path, tumor_type):
     df_mis['ID'] = tumor_type + df_mis['ID'].astype(str).copy()
 
     # fill in other variants with na's
-    df_mis.loc[df_mis['Variant_Type']!='SNP', 'HGVSp_Short'] = np.nan
+    is_not_snv = (df_mis['Reference_Allele']=='-') | (df_mis['Tumor_Seq_Allele2']=='-')
+    #df_mis.loc[df_mis['Variant_Type']!='SNP', 'HGVSp_Short'] = np.nan
+    df_mis.loc[is_not_snv, 'HGVSp_Short'] = np.nan
 
     # get the mutation info
     df_mis['Reference Codon Position'] = df_mis['HGVSp_Short'].str[3:-1].copy()
