@@ -15,6 +15,7 @@ Hotspot Missense mutation Areas in Protein Structures (HotMAPS) detects somatic 
 
 ## Releases
 
+* HotMAPS-1.1.3 Fixed missing required python package
 * HotMAPS-1.1.2 Minor bug fix
 * HotMAPS-1.1.1 Bug fixes for non-exome scale analysis
 * HotMAPS-1.1.0 Map mutations to protein structure and several other changes
