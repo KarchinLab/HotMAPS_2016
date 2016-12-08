@@ -2,3 +2,4 @@ numpy
 scipy
 biopython
 pandas
+MySQL-python
