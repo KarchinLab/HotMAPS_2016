@@ -211,3 +211,36 @@ findHotregionGene:
 		-q ${Q_VALUE} \
 		-o ${OUTPUT_DIR}/hotspot_regions_gene_${Q_VALUE}.txt \
 		--log=stdout
+
+###############################
+# Command to create files necessary
+# to load into MuPit MYSQL DB
+##############################
+# find residues with multiple mappings within
+# a single protein struct. Creates a blacklist
+# to avoid these in mupit.
+makeBlackList:
+	mkdir -p ${OUTPUT_DIR}/qc
+	python scripts/mupit/make_black_list.py \
+		-a ${MUPIT_ANNOTATION_DIR} \
+		-o ${OUTPUT_DIR}/qc/structure_level_residue_black_list.txt \
+		--structure
+
+# This command should be ran after
+# the findHotregionStruct command
+hotspotToMupitTable:
+	python scripts/mupit/make_mupit_cluster_tables.py \
+		-r ${OUTPUT_DIR}/hotspot_regions_structure_${Q_VALUE}.txt \
+		-b ${OUTPUT_DIR}/qc/structure_level_residue_black_list.txt \
+		-reg ${OUTPUT_DIR}/mupit_table_regions_${Q_VALUE}.txt \
+		-res ${OUTPUT_DIR}/mupit_table_residues_${Q_VALUE}.txt 
+
+# load the hotspots into MuPIT
+loadMupitCluster:
+	python scripts/mupit/load_cluster_tables.py \
+		-c ${OUTPUT_DIR}/mupit_table_regions_${Q_VALUE}.txt \
+		-r ${OUTPUT_DIR}/mupit_table_residues_${Q_VALUE}.txt \
+		--mysql-user ${MYSQL_USER} \
+		--mysql-passwd ${MYSQL_PASSWD} \
+		-u \
+		--db=${MYSQL_DB}
