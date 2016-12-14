@@ -31,6 +31,9 @@ TEMP_DIR=tmp/
 
 GROUP_FUNC=min
 
+# script that fetchs the PDB information file
+PDB_SQL_SCRIPT=scripts/sql/get_pdb_info.sql
+
 ##################################################
 # Directories containing mutations and their 
 # annotations
@@ -113,7 +116,7 @@ prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf
 # important for running on known structures
 getPDBInfo:
 	mkdir -p data
-	mysql -u ${MYSQL_USER} -A -p -h ${MYSQL_HOST} ${MYSQL_DB} < scripts/sql/get_pdb_info.sql > ${pdb_info_init}
+	mysql -u ${MYSQL_USER} -A -p -h ${MYSQL_HOST} ${MYSQL_DB} < ${PDB_SQL_SCRIPT} > ${pdb_info_init}
 
 # get mutations from mupit database
 getMutations:
