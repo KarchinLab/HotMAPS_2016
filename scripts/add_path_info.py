@@ -71,11 +71,19 @@ def main(opts):
         header = handle.readline().strip().split('\t')
         header.append('NonBioPDBPath')
         header.append('PDBPath')
+
+        # figure out the order of columns
+        s_ix, c_ix, g_ix = header.index('PDBId'), header.index('chain'), header.index('hugo')
+        bio_num_flag = 'biomoleculeNo' in header
+        if bio_num_flag:
+            bio_ix = header.index('biomoleculeNo')
+            header.remove('biomoleculeNo')
+
         output.append(header)
 
         # iterate over each line
         for line in csv.reader(handle, delimiter='\t'):
-            struct_id, chain, gene = line
+            struct_id, chain, gene = line[s_ix], line[c_ix], line[g_ix]
             count += 1
 
             # figure out where the pdb file is
@@ -96,13 +104,20 @@ def main(opts):
                     non_biounit_path = putative_path2
                 else:
                     missing_non_bio_files.append(putative_path)
-
-                # try version numbers from 1 to 32
-                for i in range(33):
-                    pdb_path = os.path.abspath(os.path.join(biounit_dir, '{0}.pdb{1}.gz'.format(struct_id, i)))
-                    if os.path.exists(pdb_path):
-                        break
+                if bio_num_flag:
+                    # use the one specified in the biomolecules table
+                    tmp_bionum = line[bio_ix]
+                    pdb_path = os.path.abspath(os.path.join(biounit_dir, '{0}.pdb{1}.gz'.format(struct_id, tmp_bionum)))
+                else:
+                    # try version numbers from 1 to 32
+                    for i in range(33):
+                        pdb_path = os.path.abspath(os.path.join(biounit_dir, '{0}.pdb{1}.gz'.format(struct_id, i)))
+                        if os.path.exists(pdb_path):
+                            break
                 #pdb_path = os.path.abspath(os.path.join(pdb_dir, 'pdb{0}.ent'.format(struct_id)))
+            # remove bioassembly column
+            if bio_num_flag:
+                line.pop(bio_ix)
 
             line.append(non_biounit_path)
             if not os.path.exists(pdb_path):
