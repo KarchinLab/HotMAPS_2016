@@ -231,9 +231,9 @@ makeBlackList:
 hotspotToMupitTable:
 	python scripts/mupit/make_mupit_cluster_tables.py \
 		-r ${OUTPUT_DIR}/hotspot_regions_structure_${Q_VALUE}.txt \
-		-b ${OUTPUT_DIR}/qc/structure_level_residue_black_list.txt \
 		-reg ${OUTPUT_DIR}/mupit_table_regions_${Q_VALUE}.txt \
 		-res ${OUTPUT_DIR}/mupit_table_residues_${Q_VALUE}.txt 
+		#-b ${OUTPUT_DIR}/qc/structure_level_residue_black_list.txt \
 
 # load the hotspots into MuPIT
 loadMupitCluster:
