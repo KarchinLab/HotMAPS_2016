@@ -253,6 +253,12 @@ def main(opts):
         annotation.sort(key=lambda x: x[pdb_ix])
 
         for pdb_id, grp in it.groupby(annotation, lambda x: x[pdb_ix]):
+            # fringe case
+            if pdb_id not in pdb_info:
+                print('skipping ' + pdb_id)
+                continue
+
+            # get path info
             struct_info = pdb_info[pdb_id].copy()
             pdb_path = struct_info.pop('path')
             struct_chains = []
