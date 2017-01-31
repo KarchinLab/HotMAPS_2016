@@ -82,6 +82,7 @@ def read_maf(path, tumor_type):
                 'Start_Position', 'End_Position', 'Reference_Allele',
                 'Tumor_Seq_Allele2']
     df = df.drop_duplicates(dup_cols)
+    df = df.rename(columns={'amino_acid_change': 'HGVSp_Short'})
 
     #####################
     # filter hypermutated samples based on definition
