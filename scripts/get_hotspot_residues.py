@@ -20,7 +20,7 @@ def parse_arguments():
 
 def main(opts):
     output = [['Structure', 'Tumor Type', 'Model', 'Chain',
-               'Residue Position', 'p-value']]
+               'Residue Position', 'p-value', 'Density Z-score']]
     with open(opts['input']) as handle:
         # get csv reader
         myreader = csv.reader(handle, delimiter='\t')
@@ -33,22 +33,32 @@ def main(opts):
         chain_ix = header.index('Chain')
         res_ix = header.index('Mutation Residues')
         pval_ix = header.index('Hotspot P-value')
+        if 'Density Z-score' in header:
+            zscore_ix = header.index('Density Z-score')
 
         # iterate over every structure/tumor type pair
         for line in myreader:
             # skip if no p-values
-            if not line[pval_ix]:
-                continue
+            try:
+                if not line[pval_ix]:
+                    continue
+            except:
+                import IPython ; IPython.embed()
             chains = line[chain_ix].split(',')
             models = line[model_ix].split(',')
             res_pos = line[res_ix].split(',')
             res_pval = map(float, line[pval_ix].split(','))
+            if 'Density Z-score' in header:
+                res_zscore = map(float, line[zscore_ix].split(','))
 
             # iterate over p-values
             for i, p in enumerate(res_pval):
                 if p <= opts['significance_level']:
-                    output.append([line[struct_ix], line[ttype_ix], models[i],
-                                   chains[i], res_pos[i], p])
+                    tmp_list = [line[struct_ix], line[ttype_ix], models[i],
+                                chains[i], res_pos[i], p]
+                    if 'Density Z-score' in header:
+                        tmp_list.append(res_zscore[i])
+                    output.append(tmp_list)
 
     # write output to file
     if opts['output'] is not None:
