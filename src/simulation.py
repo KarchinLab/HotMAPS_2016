@@ -44,8 +44,8 @@ def compute_pvals(density, sim_null):
     num_sim = float(np.sum(sim_null[:,1]))
 
     # look up the p-values
-    #pvals = [sim_null_pval[ix] if ix < sim_null_pval.size else 1./num_sim
-    pvals = [sim_null_pval[ix] if ix < sim_null_pval.size else 0.0
+    #pvals = [sim_null_pval[ix] if ix < sim_null_pval.size else 0.0
+    pvals = [sim_null_pval[ix] if ix < sim_null_pval.size else 1./num_sim
              for ix in ixs]
 
     # cdf
