@@ -290,11 +290,8 @@ def main(opts):
             gene2graph = update_graph(gene2graph, cog, signif_struct_info,
                                       struct, opts['radius'])
             # update graph for the combined cross-tumor type regions
-            banned_ttypes = ['COAD', 'READ', 'PANCAN12', 'CHOL', 'SARC',
-                             'TGCT', 'THYM', 'UVM']
-            if ttype not in banned_ttypes:
-                gene2graph_all = update_graph(gene2graph_all, cog, signif_struct_info,
-                                              struct, opts['radius'])
+            gene2graph_all = update_graph(gene2graph_all, cog, signif_struct_info,
+                                          struct, opts['radius'])
 
         # format the results into the output list
         tmp_out = retrieve_components(gene2graph, ttype)
