@@ -48,6 +48,9 @@ def parse_arguments():
                         type=float,
                         required=True,
                         help='Q-value (FDR) threshold to apply for significance')
+    #parser.add_argument('-homology', '--homology',
+                        #action='store_true', default=False,
+                        #help='Whether to correct based on homology models')
     parser.add_argument('-o', '--output-file',
                         type=str,
                         help='Name of output file')
@@ -228,8 +231,12 @@ def main(opts):
     stratified_hotspot_output = {}
     for hspot_data in hotspot_output:
         # skip homology model
-        #if hspot_data[0].startswith('NP_') or hspot_data[0].startswith('ENSP'):
-            #continue
+        #if not opts['homology']:
+            #if hspot_data[0].startswith('NP_') or hspot_data[0].startswith('ENSP'):
+                #continue
+        #else:
+            #if not hspot_data[0].startswith('NP_') and not hspot_data[0].startswith('ENSP'):
+                #continue
 
         ttype = hspot_data[1]
         if not ttype in stratified_hotspot_output:
