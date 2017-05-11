@@ -306,8 +306,6 @@ def get_structure_info(structure, mchains, mres, mcount, struct_chains, ttype_ix
                 center_of_geometry = np.sum(atom.coord for atom in residue) / len(residue)
 
                 for tumour in ttype_ixs:
-                    #if tumour == 'PANCAN':
-                        #continue
                     for i in ttype_ixs[tumour]:
                         # check if this residue in this chain has a mutation
                         if mchains[i] == chain_id and mres[i] == full_id[3][1]:
