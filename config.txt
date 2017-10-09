@@ -1,10 +1,7 @@
 [PDB]
-modbase_dir=/databases/ModBase
-#pdb_dir=/mnt/disk003/projects/my_pdb_data_dir3
-pdb_dir=/databases/pdb/pdb-mirror/data/
+modbase_dir=/path/to/ModBase
+pdb_dir=/path/to/my_pdb_data_dir
 refseq_homology: %(modbase_dir)s/ModBase_H_sapiens_2013_refseq/models/model/
 ensembl_homology: %(modbase_dir)s/H_sapiens_2013/models/
 biological_assembly: %(pdb_dir)s/biounit/coordinates/all/
 non_biological_assembly: %(pdb_dir)s/structures/all/pdb
-#biological_assembly: %(pdb_dir)s/
-#non_biological_assembly: %(pdb_dir)s/
