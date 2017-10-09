@@ -39,11 +39,9 @@ def main(opts):
         # iterate over every structure/tumor type pair
         for line in myreader:
             # skip if no p-values
-            try:
-                if not line[pval_ix]:
-                    continue
-            except:
-                import IPython ; IPython.embed()
+            if not line[pval_ix]:
+                continue
+
             chains = line[chain_ix].split(',')
             models = line[model_ix].split(',')
             res_pos = line[res_ix].split(',')
