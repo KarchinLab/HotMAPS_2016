@@ -243,30 +243,32 @@ def main(opts):
             # aditional information about p-values
             # for specific residues in a structure
             # compute p-values for observed
-            try:
-                obs_pvals, sim_cdf = sim.compute_pvals(mut_list, sim_null_dist)
-            except:
-                print(total_mutations)
-                print(opts['num_simulations'])
-                print(max_obs_dens)
-                print(mut_list)
-                print(sim_null_dist)
-                print(t_mut_res_mutation_counts)
-                print(tumour)
-                print(structure_mutations)
-                raise
+            obs_pvals, sim_cdf = sim.compute_pvals(mut_list, sim_null_dist)
 
             output.append([structure_id, tumour,
-                            ','.join([str(o[0][1]) for o in mut_list if o[0] in my_query_res]),
-                            ','.join([str(o[0][2]) for o in mut_list if o[0] in my_query_res]),
-                            ','.join([str(o[0][3][1]) for o in mut_list if o[0] in my_query_res]),
+                            ','.join([str(o[0][1]) for o in mut_list
+                                      #if o[0] in my_query_res
+                                      ]),
+                            ','.join([str(o[0][2]) for o in mut_list
+                                      #if o[0] in my_query_res
+                                      ]),
+                            ','.join([str(o[0][3][1]) for o in mut_list
+                                      #if o[0] in my_query_res
+                                      ]),
                             ','.join([str(t_mut_res_mutation_counts[o[0]])
-                                        for o in mut_list if o[0] in my_query_res]),
-                            ','.join([str(o[1]) for o in mut_list if o[0] in my_query_res]),
-                            ','.join([str((o[1]-mean)/std) for o in mut_list if o[0] in my_query_res]),
+                                      for o in mut_list
+                                      #if o[0] in my_query_res
+                                      ]),
+                            ','.join([str(o[1]) for o in mut_list
+                                      #if o[0] in my_query_res
+                                      ]),
+                            ','.join([str((o[1]-mean)/std) for o in mut_list
+                                      #if o[0] in my_query_res
+                                      ]),
                             ','.join(map(str, [obs_pvals[tmp_ix]
                                                for tmp_ix, tmp_val in enumerate(mut_list)
-                                               if tmp_val[0] in my_query_res]))])
+                                               #if tmp_val[0] in my_query_res
+                                               ]))])
 
     # write output to file
     output = [['Structure', 'Tumor Type', 'Model', 'Chain', 'Mutation Residues',
