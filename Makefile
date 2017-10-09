@@ -105,8 +105,21 @@ loadMupitMutations:
 		--mysql-passwd ${MYSQL_PASSWD} \
 		--db ${MYSQL_DB}
 
+# update the mutations into the Mupit mysql db
+# this will only remove mutations for the tumor types provided in 
+# input set of mutations
+updateMupitMutations:
+	python scripts/mupit/load_mutations_table.py \
+		-m ${MUT_DIR}/mysql.mutations.tcga.txt \
+		--update-table \
+		--host ${MYSQL_HOST} \
+		--db ${MYSQL_DB}
+
 # run all the steps
+# complete reload of mutations table
 prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf loadMupitMutations
+# only reload relevant tissue
+prepMutationsUpdate: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf updateMupitMutations
 
 ##################################
 # Prepare input files for hot spot
