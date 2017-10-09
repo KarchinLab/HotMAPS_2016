@@ -120,6 +120,8 @@ updateMupitMutations:
 prepMutations: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf loadMupitMutations
 # only reload relevant tissue
 prepMutationsUpdate: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf updateMupitMutations
+# only create a mutation file and don't update mysql
+prepMutationsNoLoad: mapMafToStructure prepMupitAnnotationMaf prepareMutationsTableMaf 
 
 ##################################
 # Prepare input files for hot spot
