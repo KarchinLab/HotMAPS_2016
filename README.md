@@ -6,12 +6,12 @@ Hotspot Missense mutation Areas in Protein Structures (HotMAPS) detects somatic 
 
 ## Links
 
-* [Documentation Wiki](http://github.com/KarchinLab/HotMAPS/wiki/Home)
-* [Installation](http://github.com/KarchinLab/HotMAPS/wiki/Installation)
-* <a href="http://github.com/KarchinLab/HotMAPS/wiki/Quick-start">Quick start example</a>
-* <a href="http://github.com/KarchinLab/HotMAPS/wiki/Tutorial-(Exome-scale)">Tutorial (Exome scale)</a>
-* <a href="http://github.com/KarchinLab/HotMAPS/wiki/MySQL-database">Loading MySQL database</a>
-* <a href="http://github.com/KarchinLab/HotMAPS/wiki/Tutorial-(Mapping-mutations)">Tutorial (Mapping mutations to protein structure)</a>
+* [Documentation Wiki](http://github.com/KarchinLab/HotMAPS_2016/wiki/Home)
+* [Installation](http://github.com/KarchinLab/HotMAPS_2016/wiki/Installation)
+* <a href="http://github.com/KarchinLab/HotMAPS_2016/wiki/Quick-start">Quick start example</a>
+* <a href="http://github.com/KarchinLab/HotMAPS_2016/wiki/Tutorial-(Exome-scale)">Tutorial (Exome scale)</a>
+* <a href="http://github.com/KarchinLab/HotMAPS_2016/wiki/MySQL-database">Loading MySQL database</a>
+* <a href="http://github.com/KarchinLab/HotMAPS_2016/wiki/Tutorial-(Mapping-mutations)">Tutorial (Mapping mutations to protein structure)</a>
 
 ## Releases
 
@@ -31,7 +31,7 @@ If you use HotMAPS in your research, please cite:
 
 Releases can be found on github at
 
-* [http://github.com/KarchinLab/HotMAPS/releases](http://github.com/KarchinLab/HotMAPS/releases)
+* [http://github.com/KarchinLab/HotMAPS_2016/releases](http://github.com/KarchinLab/HotMAPS/releases)
 
 ## Platform
 
