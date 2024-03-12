@@ -31,7 +31,7 @@ If you use HotMAPS in your research, please cite:
 
 Releases can be found on github at
 
-* [http://github.com/KarchinLab/HotMAPS_2016/releases](http://github.com/KarchinLab/HotMAPS/releases)
+* [http://github.com/KarchinLab/HotMAPS_2016/releases](http://github.com/KarchinLab/HotMAPS_2016/releases)
 
 ## Platform
 
